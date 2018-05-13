@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ToDo App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+   .ex1 {
+    padding-left:500px;
+   }
+   .ex2 {
+    padding-left:445px;
+   }
+   </style>
+</head>
+<body>
+   <br>
+   <form class="form-inline" action="{% url 'add' %}" method="POST" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title" class="ex1">Title:</label>
+     {{form.title}}
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label for="description" class="ex2">Description:</label>
+      {{form.description}}
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+     <label for="status" class="ex1">Status:</label>
+     {{form.status}}
+    </div>
+    <br>
+    <br>
+      <button  type="submit"  class="btn btn-primary center-block">ADD</button>
+    </form>
+    <br>
+    <br>
+    <hr>
+   <ul class='list-group t20'>
+      {%for posts in posts_list %}
+      <a href="{% url 'display' posts.id %}">
+      <li class="list-group-item">{{posts.title}}</li></a>
+      {% endfor %}
+   </ul>
+</body>
+</html>

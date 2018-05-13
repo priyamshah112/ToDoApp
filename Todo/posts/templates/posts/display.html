@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+   .ex1 {
+    padding-left:500px;
+   }
+   .ex2 {
+    padding-left:445px;
+   }
+   </style>
+	<title> {{todoid.title}} </title>
+</head>
+<body>
+
+<p class="ex1"><b>Id:</b> {{todoid.id}} </p>
+<p class="ex1"><b>Title:</b> {{todoid.title}} </p>
+<p class="ex1"><b>Description:</b> {{todoid.description}} </p>
+<p class="ex1"><b>Status:</b> {{todoid.status}} </p>
+<br>
+   <form class="form-inline" action="{% url 'update' todoid.id %}" method="POST" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title" class="ex1">Title:</label>
+     {{form.title}}
+   </div>
+   <br>
+   <br>
+   <div class="form-group">
+      <label for="description" class="ex2">Description:</label>
+      {{form.description}}
+   </div>
+   <br>
+   <br>
+   <div class="form-group">
+     <label for="status" class="ex1">Status:</label>
+     {{form.status}}
+   </div>
+   <br>
+   <br>
+   	<div class="form-row text-center">
+	    <div class="col-12">
+	       <button type="submit"  class="btn btn-primary">Update</button>
+	    </div>
+    </div>
+    
+   </form>
+   <br>
+   <br>
+    <form class="form-inline" action="{% url 'delete' todoid.id %}" method="POST" role="form">
+    	{% csrf_token %}
+    	<div class="form-row text-center">
+		    <div class="col-12">
+		       <button type="submit"  class="btn btn-primary">Delete</button>
+		    </div>
+	    </div>
+	    
+    </form>
+
+</body>
+</html>
